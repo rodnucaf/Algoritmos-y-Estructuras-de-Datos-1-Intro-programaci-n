@@ -1,0 +1,464 @@
+<h1>Parcial - tema1</h1>
+<p>Nota: 8.9 / 10.0 (APROBADO)</p>
+<pre><code>puntaje ej1: 2
+puntaje ej2: 1.27
+puntaje ej3: 2
+puntaje ej4: 1.66
+puntaje ej5: 1
+puntaje ej6: 1
+</code></pre>
+<h2>Datos del alumno</h2>
+<p>Nombre: Facundo David Rabago</p>
+<p>DNI: 42648344</p>
+<p>LU: </p>
+<p>Maquina: 46-03</p>
+<h2>Enunciado</h2>
+<!doctype html>
+<html>
+<head>
+  <link rel="icon" href="data:,">
+  <link href="css/style.css" rel="stylesheet" />
+  <meta charset="UTF-8">
+</head>
+
+<body>
+  <div>
+    <h1>Parcial Haskell - Tema 1 - Turno mañana</h1>
+
+    <h2>Importante</h2>
+    <p>
+      Template de funciones a implementar <a href="#" onclick="forceDownload('/parcial/Template_t1.hs','SolucionT1.hs');">acá</a><br>
+      Lista de funciones permitidas <a href="/static/haskell_permitidas.html" target="_blank" rel="noopener noreferrer">acá</a><br>
+      Ejemplo de hunit <a href="#" onclick="forceDownload('/parcial/Test_template_t1.hs','Test_template_t1.hs');">acá</a>
+    </p>
+
+    <form name="form1" action="/submit_examen" method="post" enctype="multipart/form-data" onsubmit="return validaciones(event)">
+      <h2>Enunciado</h2>
+
+      <ol>
+          <p>
+            Resolver los siguientes ejercicios cuyas especificaciones en lenguaje semiformal figuran a continuación. 
+            Deben ser implementadas en Haskell utilizando los tipos requeridos y solamente las funciones que se ven 
+            en la materia Introducción a la Programación / Algoritmos y Estructuras de Datos I (FCEyN-UBA).
+          </p>
+
+        <li>
+          <strong>Ejercicio 1 (2 puntos)</strong>
+          <p>
+            problema esCuadradoDePrimo (<i>n</i>: Z) : Bool {<br>
+            &nbsp; <strong>requiere:</strong> {n > 1} <br>
+            &nbsp; <strong>asegura:</strong> {<i>res</i> = true ⇔ Existe un número primo p tal que p² = n} <br>
+            }<br>
+          </p>
+
+          <pre style="background-color: #f0f0f0; /* Color de fondo del recuadro */
+padding: 2px; /* Espacio interior */
+border: 1px solid #ccc; /* Borde del recuadro */
+border-radius: 5px; /* Bordes redondeados */">
+Ejemplo 1: <b>esCuadradoDePrimo 9</b> debe devolver <b>True</b>
+Ejemplo 2: <b>esCuadradoDePrimo 16</b> debe devolver <b>False</b>
+          </pre>
+        </li>
+
+        <li>
+          <strong>Ejercicio 2 (2 puntos)</strong>
+          <p>
+            problema posParesFormanEscalera (<i>lista</i>: seq⟨Z⟩) : Bool {<br>
+            &nbsp; <strong>requiere:</strong> {True} <br>
+            &nbsp; <strong>asegura:</strong> {<i>res</i> = true ⇔ Para todo número par <i>i</i> tal que 0 ≤ i < |lista|-2, se cumple que lista[i+2] = lista[i] + 1} <br>
+            }<br>
+          </p>
+
+          <pre style="background-color: #f0f0f0; /* Color de fondo del recuadro */
+padding: 2px; /* Espacio interior */
+border: 1px solid #ccc; /* Borde del recuadro */
+border-radius: 5px; /* Bordes redondeados */">
+Ejemplo 1: <b>posParesFormanEscalera [1,5,2,8,3]</b> debe devolver <b>True</b>
+Ejemplo 2: <b>posParesFormanEscalera [1,2,3,4]</b> debe devolver <b>False</b>
+          </pre>
+        </li>
+
+        <li>
+          <strong>Ejercicio 3 (2 puntos)</strong>
+          <p>
+            Recibimos de una importante productora el listado de películas estrenadas, agrupadas por año
+            (es decir, en una tupla de la forma (Año, [Título])). Debemos pasarle
+            a una famosa plataforma de streaming el listado de tuplas película/año de estreno disponibles.
+          </p>
+
+                      <p>
+              problema listadoDePeliculas (<i>pelisPorAnio</i>: seq⟨Z x seq⟨String⟩⟩) : seq⟨⟨String x Z⟩⟩ {<br>
+              &nbsp; <strong>requiere:</strong> {Las primeras componentes de <i>pelisPorAnio</i> son todas distintas} <br>
+              &nbsp; <strong>requiere:</strong> {En cada tupla de <i>pelisPorAnio</i>, en la segunda componente no hay repetidos} <br>
+              &nbsp; <strong>asegura:</strong> {<i>res</i> es una lista de tuplas donde cada tupla contiene un título de película y su año de estreno, de acuerdo a los datos ingresados en <i>pelisPorAnio</i>} <br>
+              &nbsp; <strong>asegura:</strong> {Para cada película en <i>pelisPorAnio</i>, existe una tupla correspondiente en <i>res</i> con el título y año correctos y viceversa} <br>
+              &nbsp; <strong>asegura:</strong> {<i>res</i> no contiene elementos repetidos} <br>
+              }<br>
+            </p>
+
+          <pre style="background-color: #f0f0f0; /* Color de fondo del recuadro */
+padding: 2px; /* Espacio interior */
+border: 1px solid #ccc; /* Borde del recuadro */
+border-radius: 5px; /* Bordes redondeados */">
+Ejemplo 1: <b>listadoDePeliculas [(2019,["Parasite","Joker"]),(2021,["Dune"])]</b> puede devolver <b>[("Parasite",2019),("Joker",2019),("Dune",2021)]</b>
+Ejemplo 2: <b>listadoDePeliculas [(2019,["Avengers: Endgame"])]</b> debe devolver <b>[("Avengers: Endgame",2019)]</b>
+          </pre>
+        </li>
+
+        <li>
+          <strong>Ejercicio 4 (2 puntos)</strong>
+          <p>
+            Dada una matriz de números enteros, eliminar la primera fila que tenga la suma máxima.
+          </p>
+          <p>
+            problema eliminarFilaQueMasSuma (<i>mat</i>: seq⟨seq⟨Z⟩⟩) : seq⟨seq⟨Z⟩⟩ {<br>
+            &nbsp; <strong>requiere:</strong> {|<i>mat</i>| > 0} <br>
+            &nbsp; <strong>requiere:</strong> {Todos los elementos de <i>mat</i> tienen la misma longitud (y dicha longitud es estrictamente mayor a 0)} <br>
+            &nbsp; <strong>asegura:</strong> {|<i>res</i>| = |<i>mat</i>| - 1} <br>
+            &nbsp; <strong>asegura:</strong> {<i>res</i> contiene todas las filas de <i>mat</i> (con los mismos elementos y en el mismo orden)
+              excepto la primera que tiene suma máxima} <br>
+            }<br>
+          </p>
+
+          <pre style="background-color: #f0f0f0; /* Color de fondo del recuadro */
+padding: 2px; /* Espacio interior */
+border: 1px solid #ccc; /* Borde del recuadro */
+border-radius: 5px; /* Bordes redondeados */">
+Ejemplo 1: <b>eliminarFilaQueMasSuma [[1,2],[3,4],[1,1],[6,1]]</b> debe devolver <b>[[1,2],[1,1],[6,1]]</b>
+          </pre>
+        </li>
+
+        <li>
+          <strong>Ejercicio 5 (1 punto)</strong>
+          <p>
+            Conteste marcando la opción correcta asumiendo que &alpha; y &beta; son dos fórmulas de la lógica proposicional 
+            tales que &alpha; es más fuerte que &beta;, y que se tiene las siguientes especificaciones:
+          </p>
+
+           <table style="width: 100%; border-collapse: collapse;">
+             <tr>
+               <td style="width: 50%; padding: 10px; vertical-align: top;">
+                 <strong>problema1 (...)</strong> {<br>
+                 &nbsp; <strong>requiere:</strong> {&alpha;} <br>
+                 &nbsp; <strong>asegura:</strong> {&gamma;} <br>
+                 }
+               </td>
+               <td style="width: 50%; padding: 10px; vertical-align: top;">
+                 <strong>problema2 (...)</strong> {<br>
+                 &nbsp; <strong>requiere:</strong> {&beta;} <br>
+                 &nbsp; <strong>asegura:</strong> {&gamma;} <br>
+                 }
+               </td>
+             </tr>
+           </table>
+          <p>
+            <input type="radio" name="mchoice_1" id="opcion1" value="1" />
+            <label for="opcion1">Una correcta implementación de <b>problema1</b> va a contemplar al menos los mismos casos de entrada que una correcta implementación del <b>problema2</b></label> <br>
+            <input type="radio" name="mchoice_1" id="opcion2" value="2" />
+            <label for="opcion2">Una correcta implementación de <b>problema2</b> va a contemplar al menos los mismos casos de entrada que una correcta implementación del <b>problema1</b></label> <br>
+            <input type="radio" name="mchoice_1" id="opcion3" value="3" />
+            <label for="opcion3">No es posible afirmar ninguna de las opciones sin conocer en detalle ambas especificaciones</label> <br>
+          </p>
+        </li>
+
+
+        <li>
+          <strong>Ejercicio 6 (1 punto)</strong>
+          <p>
+            Respecto al testing de caja negra, conteste marcando la opción correcta asumiendo que se cuenta con la siguiente especificación:
+          </p>
+
+          <p>
+            problema unaFuncionQueHaceAlgo (<i>n</i>: Z) : Z {<br>
+            &nbsp; <strong>requiere:</strong> {True} <br>
+            &nbsp; <strong>asegura:</strong> {<i>res</i> > n } <br>
+            &nbsp; <strong>asegura:</strong> {<i>res</i> es un número par} <br>
+            }<br>
+          </p>
+
+          <p>
+            <input type="radio" name="mchoice_2" id="opcion1_2" value="1" />
+            <label for="opcion1_2"><i>n</i> = 3, <i>res</i> = 4 es un caso de test válido</label> <br>
+            <input type="radio" name="mchoice_2" id="opcion2_2" value="2" />
+            <label for="opcion2_2">Si queremos testear el caso de <i>n</i> = 3, debemos armar un test suite con al menos 2 
+              casos de test, uno para validar que <i>res</i> > <i>n</i> y otro para validar que <i>res</i> es un número par</label> <br>
+            <input type="radio" name="mchoice_2" id="opcion3_2" value="3" />
+            <label for="opcion3_2">Un buen test suite debería incluir casos en los cuales n toma valores pares, impares, positivos y negativos</label> <br>
+          </p>
+        </li>
+      </ol>
+
+      <hr>
+      <h3 style="color:#1A5276">Adjunta el archivo con tu solución:</h3>
+      <p><b style="color:red">Solo se puede adjuntar 1 archivo de extensión .hs. En caso de haber desarrollado tests propios, no deben ser entregados.</b></p>
+
+      <label for="archivo">Seleccionar archivo a enviar:</label>
+      <input type="file" id="archivo" name="archivo" required accept=".hs,text/x-haskell" />
+
+      <input type="submit" value="Enviar" style="background-color: #1A5276; border-radius: 5px;
+                margin-top:10px;padding: 10px 150px;color: #FFFFFF;
+                font-size: 20px;cursor: pointer; width:100%">
+    </form>
+  </div>
+
+  <script>
+    function validaciones(event) {
+      var confirmacion = confirm("Confirmo que revise mis respuestas y que quiero entregar mi examen");
+      if (!confirmacion) {
+        event.preventDefault();
+        event.returnValue = false;
+        return false;
+      }
+      event.returnValue = true;
+      return true;
+    }
+
+    // registro una funcion para mostrar el archivo cuando se adjunta.
+    // de esa forma evitamos que se adjunten otros archivos por error
+    document
+      .getElementById('archivo')
+      .addEventListener(
+        'change',
+        function () {
+          var fr = new FileReader();
+          fr.onload = function () {
+            alert(this.result);
+          };
+          fr.readAsText(this.files[0]);
+        }
+      );
+
+    // para forzar a bajar el template de hunit y que no se pueda abrir en un nuevo tab
+    // (el browser intenta mostrar el codigo como HTML y el formato se ve raro)
+    function forceDownload(url, filename) {
+      fetch(url).then(function (t) {
+        return t.blob().then((b) => {
+          var a = document.createElement("a");
+          a.href = URL.createObjectURL(b);
+          a.setAttribute("download", filename);
+          a.click();
+        });
+      });
+    }
+  </script>
+</body>
+</html>
+
+<h2>Solucion entregada por el alumno</h2>
+<pre><code>{--
+Yo: Facundo David Rabago
+Certifico que el siguiente archivo fue elaborado únicamente por mí, sin ayuda de otras personas o herramientas.
+--}
+
+module SolucionT1 where
+
+-- Ejercicio 1
+esCuadradoDePrimo :: Integer -&gt; Bool
+esCuadradoDePrimo numero = verificarSiExistePRequerido numero (formarListaNaM 2 numero)
+
+
+formarListaNaM :: Integer-&gt;Integer-&gt;[Integer]
+formarListaNaM n m | n == m = [n]
+                   | otherwise = n : formarListaNaM (n+1) m 
+
+verificarSiExistePRequerido :: Integer-&gt;[Integer]-&gt;Bool
+verificarSiExistePRequerido _ [] = False
+verificarSiExistePRequerido num (x:xs) | esPrimo x &amp;&amp; num == x^2 = True
+                                       | otherwise = verificarSiExistePRequerido num xs
+
+divisores :: Integer-&gt;[Integer]-&gt;[Integer]
+divisores n [] = []
+divisores n (x:xs) | mod n x == 0 = x : divisores n xs
+                   | otherwise = divisores n xs  
+longitudLista :: [Integer]-&gt;Integer
+longitudLista [] = 0
+longitudLista (x:xs) = 1 + longitudLista xs 
+
+esPrimo :: Integer-&gt;Bool
+esPrimo n = longitudLista (divisores n (formarListaNaM 1 n)) == 2
+
+-- Ejercicio 2
+posParesFormanEscalera :: [Integer] -&gt; Bool
+posParesFormanEscalera [a,b] = True -- si me quedan sólo dos elementos no importa si queda algún par, ya que no van a cumplir la condición &quot;par i tal que 0 ≤ i &lt; |lista|-2&quot;
+posParesFormanEscalera (x:xs) | not (esPar x) = True &amp;&amp; posParesFormanEscalera xs
+                              | otherwise = x &gt;= 0 &amp;&amp; (x+1) == head(tail xs)      
+
+esPar :: Integer-&gt;Bool
+esPar n = mod n 2 == 0
+
+
+-- Ejercicio 3
+listadoDePeliculas :: [(Integer, [String])] -&gt; [(String, Integer)]
+listadoDePeliculas [] = []
+listadoDePeliculas ((anio,[]):resto) = listadoDePeliculas resto
+listadoDePeliculas ((anio, (pelicula:restoMismoAnio)):resto) = (pelicula,anio) : listadoDePeliculas ((anio,(restoMismoAnio)):resto)
+
+
+-- Ejercicio 4
+eliminarFilaQueMasSuma :: [[Integer]] -&gt; [[Integer]]
+eliminarFilaQueMasSuma [a] = []
+eliminarFilaQueMasSuma (fila:resto) | sumarFila fila &gt;= sumarFila (head resto) = (head resto) : eliminarFilaQueMasSuma (fila:tail resto)
+                                    | otherwise = fila : eliminarFilaQueMasSuma resto
+
+sumarFila :: [Integer]-&gt;Integer
+sumarFila [] = 0
+sumarFila (x:xs) = x + sumarFila xs
+
+{--
+Siendo la última modificación con la solución final:
+01/10/25 11:19
+--}
+
+</code></pre>
+<h2>Resultado de la compilacion</h2>
+<pre><code>Loaded package environment from /home/virginia-brassesco/.ghc/x86_64-linux-9.4.7/environments/default
+[1 of 1] Compiling SolucionT1       ( correcciones/parcialtm_funcional/rabago_facundo_david_42648344/submission.hs.main.hs, correcciones/parcialtm_funcional/rabago_facundo_david_42648344/submission.hs.main.o )
+
+</code></pre>
+<h2>Ejecucion de los tests</h2>
+<h3>tema1-test-ej1.hs.compilacion.out</h3>
+<p>Puntaje del ej: 2 / 2</p>
+<pre><code>
+
+Cases: 6  Tried: 1  Errors: 0  Failures: 0
+
+Cases: 6  Tried: 2  Errors: 0  Failures: 0
+
+Cases: 6  Tried: 3  Errors: 0  Failures: 0
+
+Cases: 6  Tried: 4  Errors: 0  Failures: 0
+
+Cases: 6  Tried: 5  Errors: 0  Failures: 0
+
+
+Cases: 6  Tried: 6  Errors: 0  Failures: 0
+
+
+Cases: 6  Tried: 6  Errors: 0  Failures: 0
+
+</code></pre>
+<h3>tema1-test-ej2.hs.compilacion.out</h3>
+<p>Puntaje del ej: 1.27 / 2</p>
+<pre><code>
+
+
+### Error in:   0:&quot;lista vac\237a&quot;
+Solucion.hs:(36,1)-(38,76): Non-exhaustive patterns in function posParesFormanEscalera
+
+
+
+Cases: 11  Tried: 1  Errors: 1  Failures: 0
+
+
+### Error in:   1:una lista de 1 elemento
+Solucion.hs:(36,1)-(38,76): Non-exhaustive patterns in function posParesFormanEscalera
+
+
+
+Cases: 11  Tried: 2  Errors: 2  Failures: 0
+
+Cases: 11  Tried: 3  Errors: 2  Failures: 0
+
+Cases: 11  Tried: 4  Errors: 2  Failures: 0
+
+Cases: 11  Tried: 5  Errors: 2  Failures: 0
+
+
+### Failure in: 5:falso en el medio longitud impar
+Tema1-test-ej2.hs:22
+expected: False
+ but got: True
+
+
+Cases: 11  Tried: 6  Errors: 2  Failures: 1
+
+Cases: 11  Tried: 7  Errors: 2  Failures: 1
+
+Cases: 11  Tried: 8  Errors: 2  Failures: 1
+
+
+### Failure in: 8:falso en el medio longitud par
+Tema1-test-ej2.hs:25
+expected: False
+ but got: True
+
+
+Cases: 11  Tried: 9  Errors: 2  Failures: 2
+
+Cases: 11  Tried: 10  Errors: 2  Failures: 2
+
+
+Cases: 11  Tried: 11  Errors: 2  Failures: 2
+
+
+Cases: 11  Tried: 11  Errors: 2  Failures: 2
+
+</code></pre>
+<h3>tema1-test-ej3.hs.compilacion.out</h3>
+<p>Puntaje del ej: 2 / 2</p>
+<pre><code>
+
+Cases: 6  Tried: 1  Errors: 0  Failures: 0
+
+Cases: 6  Tried: 2  Errors: 0  Failures: 0
+
+Cases: 6  Tried: 3  Errors: 0  Failures: 0
+
+Cases: 6  Tried: 4  Errors: 0  Failures: 0
+
+Cases: 6  Tried: 5  Errors: 0  Failures: 0
+
+
+Cases: 6  Tried: 6  Errors: 0  Failures: 0
+
+
+Cases: 6  Tried: 6  Errors: 0  Failures: 0
+
+</code></pre>
+<h3>tema1-test-ej4.hs.compilacion.out</h3>
+<p>Puntaje del ej: 1.66 / 2</p>
+<pre><code>
+
+Cases: 6  Tried: 1  Errors: 0  Failures: 0
+
+
+### Failure in: 1:&quot;fila con suma m\225xima al final&quot;
+Tema1-test-ej4.hs:18
+expected: [[1,2],[2,2],[1,2],[2,2]]
+ but got: [[1,2],[1,2],[2,2],[2,2]]
+
+
+Cases: 6  Tried: 2  Errors: 0  Failures: 1
+
+Cases: 6  Tried: 3  Errors: 0  Failures: 1
+
+Cases: 6  Tried: 4  Errors: 0  Failures: 1
+
+Cases: 6  Tried: 5  Errors: 0  Failures: 1
+
+
+Cases: 6  Tried: 6  Errors: 0  Failures: 1
+
+
+Cases: 6  Tried: 6  Errors: 0  Failures: 1
+
+</code></pre>
+<h3>mchoice.json-ej5.compilacion.out</h3>
+<p>Puntaje del ej: 1 / 1</p>
+<pre><code>mchoice ej5: respuesta del alumno=2, respuesta correcta=2
+
+Ran 1 test in 0 seconds
+
+OK
+
+</code></pre>
+<h3>mchoice.json-ej6.compilacion.out</h3>
+<p>Puntaje del ej: 1 / 1</p>
+<pre><code>mchoice ej6: respuesta del alumno=3, respuesta correcta=3
+
+Ran 1 test in 0 seconds
+
+OK
+
+</code></pre>
+<p>FIN</p>

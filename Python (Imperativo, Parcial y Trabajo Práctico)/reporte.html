@@ -1,0 +1,644 @@
+<h1>Parcial - tema2</h1>
+<p>Nota: 8.4 / 10.0 (APROBADO)</p>
+<pre><code>puntaje ej1: 2
+puntaje ej2: 2
+puntaje ej3: 0.4
+puntaje ej4: 2
+puntaje ej5: 1
+puntaje ej6: 1
+</code></pre>
+<h2>Datos del alumno</h2>
+<p>Nombre: Facundo David Rabago</p>
+<p>DNI: 42648344</p>
+<p>LU: </p>
+<p>Maquina: 27-04</p>
+<h2>Enunciado</h2>
+<!doctype html>
+<html>
+<head>
+  <link rel="icon" href="data:,">
+  <link href="css/style.css" rel="stylesheet" />
+  <meta charset="UTF-8">
+
+  <style>
+    th, td {
+        border: 1px solid black;
+        padding: 10px;
+        text-align: left;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+    .conditions {
+        margin-left: 20px;
+    }
+</style>
+</head>
+
+<body style="width: 50%;margin: 1% auto;">
+
+<div> 
+<h1> Parcial Python - Tema 2 - Turno mañana</h1>
+
+<h2> Importante </h2>
+
+<ul>
+  <li>El parcial se aprueba con 6 puntos</li>
+  <li>Template de funciones a implementar <a href="#" onclick="forceDownload('/parcial/Template_t2.py','Template_t2.py');">acá</a><br></li>
+  <li>Lista de funciones permitidas <a href="/static/python_permitidas.html">acá</a></li>
+  <li>Para testear el código pueden usar <a href="#" onclick="forceDownload('/parcial/tema2-test.py', 'tema2-test.py')">este</a> archivo que ya cuenta con todo lo necesario para desarrollar sus propios tests (este archivo no se entrega)</li>
+</ul>
+
+Implementar las siguientes especificaciones en Python.
+
+<form name="form1" action="/submit_examen" method="post" enctype="multipart/form-data" onsubmit="return validaciones(event)">
+
+  <hr style="width: 100%;">
+  <h3 style="color:#1A5276">Ejercicio 1 [2 puntos]</h3>
+
+<p>Implementar la función cantidad_subsecuencias_que_suman:</p>
+
+<p> problema cantidad_subsecuencias_que_suman (in <i>s</i>: seq⟨Z⟩, in <i>n</i>: Z) : Z {<br>
+  &nbsp; <strong>requiere:</strong> { True }<br>
+  &nbsp; <strong>asegura:</strong> { <i>res</i> es la cantidad de subsecuencias no vacías de números consecutivos de s que suman exactamente n }<br>
+}<br>
+</p>
+
+<pre style="background-color: #f0f0f0; /* Color de fondo del recuadro */
+padding: 2px; /* Espacio interior */
+border: 1px solid #ccc; /* Borde del recuadro */
+border-radius: 5px; /* Bordes redondeados */">
+Ejemplo: <b>cantidad_subsecuencias_que_suman([-1,6,2,-3,5,4,8], 5)</b> debe devolver <b>3</b>
+Las subsecuencias de números consecutivos que cumplen son [-1,6], [6,2,-3] y [5]
+</pre>
+
+  <hr style="width: 100%;">
+  <h3 style="color:#1A5276">Ejercicio 2 [2 puntos]</h3>
+
+  <p>En un local comercial hay una fila de clientes (de cada uno conocemos su nombre y si es prioritario o no) 
+    esperando en la caja para pagar. En cierto momento, se abre una caja para atender a los clientes con prioridad, 
+    conservando el orden en que llegaron. Implementar la función abrir_caja_prioridad:</p>
+
+  <p> problema abrir_caja_prioridad (inout <i>clientes</i>: Cola⟨String x Bool⟩) : Cola⟨String⟩ {<br>
+  &nbsp; <strong>requiere:</strong> { True }<br>
+  &nbsp; <strong>modifica:</strong> { <i>clientes</i> }<br>
+  &nbsp; <strong>asegura:</strong> { <i>res</i> contiene todos los nombres de <i>clientes@pre</i> cuya prioridad era True, en el mismo orden en que aparecen en <i>clientes@pre</i>, y no contiene ningún otro nombre}<br>
+  &nbsp; <strong>asegura:</strong> { <i>clientes</i> contiene todos los elementos de <i>clientes@pre</i> cuya prioridad era False, en el mismo orden en que aparecen en <i>clientes@pre</i>, y no contiene ningún otro elemento}<br>
+  &nbsp; <strong>asegura:</strong> { La cantidad de elementos en <i>clientes</i> más la cantidad de elementos en <i>res</i> es igual a la cantidad de elementos en <i>clientes@pre</i>}<br>
+  }<br>
+  </p>
+
+  <pre style="background-color: #f0f0f0; /* Color de fondo del recuadro */
+padding: 2px; /* Espacio interior */
+border: 1px solid #ccc; /* Borde del recuadro */
+border-radius: 5px; /* Bordes redondeados */">
+Ejemplo: Si <b>clientes</b> contiene (de inicio a fin de la cola) <br/><b>[("Bruno", True),("Juan", False),("Pedro", False),("María", True)]</b>, <br/>
+entonces la función devuelve (de inicio a fin) <b>["Bruno","María"]</b> <br/>y <b>clientes</b> queda con (de inicio a fin)
+<b>[("Juan", False),("Pedro", False)]</b>
+</pre>
+
+  <hr style="width: 100%;">
+  <h3 style="color:#1A5276">Ejercicio 3 [2 puntos]</h3>
+
+  <p>Implementar la función buscar_columna_con_maximo_menor_a_cota:</p>
+
+  <p> problema buscar_columna_con_maximo_menor_a_cota (in <i>A</i>: seq⟨seq⟨Z⟩⟩, in <i>cota</i>: Z) : Z {<br>
+  &nbsp; <strong>requiere:</strong> { |A| > 0 }<br>
+  &nbsp; <strong>requiere:</strong> { Todos los elementos de <i>A</i> tienen la misma longitud, la cual es estrictamente mayor a 0 }<br>
+  &nbsp; <strong>requiere:</strong> { Existen <i>i</i> y <i>j</i> en rango tal que A[i][j] < <i>cota</i> }<br>
+  &nbsp; <strong>asegura:</strong> { 0 <= res < |A[0]|} <br>
+  &nbsp; <strong>asegura:</strong> { Sea <i>max</i> el máximo elemento de <i>A</i> tal que <i>max</i> < <i>cota</i>, entonces existe algún 
+    <i>i</i> en rango <br/> tal que A[<i>i</i>][<i>res</i>] = <i>max</i> }<br>  
+  }<br>
+  </p>
+
+  <pre style="background-color: #f0f0f0; /* Color de fondo del recuadro */
+padding: 2px; /* Espacio interior */
+border: 1px solid #ccc; /* Borde del recuadro */
+border-radius: 5px; /* Bordes redondeados */">
+Ejemplo: <b>buscar_columna_con_maximo_menor_a_cota([[1,5,-1],[0,4,9]], 6)</b> debe devolver <b>1</b>
+  </pre>
+
+  <hr style="width: 100%;">
+  <h3 style="color:#1A5276">Ejercicio 4 [2 puntos]</h3>
+
+  <p>Tenemos un diccionario con la información de los libros de una biblioteca. El mismo tiene como claves los títulos de 
+    los libros y como valores los autores de los mismos (sólo un autor por libro). Implementar la función agrupar_por_autor_con_cota:</p>
+
+  <p> problema agrupar_por_autor_con_cota (in <i>libros</i>: dict⟨String, String⟩, cota: Z) : dict⟨String, seq⟨String⟩⟩ {<br>
+  &nbsp; <strong>requiere:</strong> { cota >= 0 }<br>
+  &nbsp; <strong>asegura:</strong> { Las claves de <i>res</i> son autores de <i>libros</i> que escribieron al menos <i>cota</i> libros }<br>
+  &nbsp; <strong>asegura:</strong> { Toda clave a de <i>res</i> cumple que su valor contiene todas las claves t de <i>libros</i> tal que <i>libros</i>[t] = a}<br>
+  }<br>
+  </p>
+
+  <pre style="background-color: #f0f0f0; /* Color de fondo del recuadro */
+padding: 2px; /* Espacio interior */
+border: 1px solid #ccc; /* Borde del recuadro */
+border-radius: 5px; /* Bordes redondeados */">
+Ejemplo: <b>agrupar_por_autor_con_cota({"Hamlet":"Shakespeare","Macbeth":"Shakespeare",<br/>"Don Quijote":"Cervantes"}, 2)</b> <br/>debe devolver <b>{"Shakespeare":["Hamlet","Macbeth"]}</b>
+  </pre>
+
+
+  <hr style="width: 100%;">
+  <h3 style="color:#1A5276">Ejercicio 5 [1 punto]</h3>
+
+  <h4 style="color:#1A5276">Dado el siguiente código en Python con su test suite, arme el CFG y conteste la opción correcta:</h4>
+
+  <pre style="background-color: #f0f0f0; padding: 2px; border: 1px solid #ccc; border-radius: 5px;">
+  def f(i:int, j:int) -> int:
+    if i > 0 or j % 2 == 0:
+        return 1
+    return 2
+  </pre>
+
+  <pre style="background-color: #f0f0f0; padding: 2px; border: 1px solid #ccc; border-radius: 5px;">
+  El test suite está definido por 2 casos de test:
+    Test1 con input i=1, j=2.
+    Test2 con input i=-1, j=2.
+  </pre>
+
+  <p>
+    <input type="radio" name="mchoice_1" id="Bopcion1" value="1" />
+    <label for="Bopcion1">La cobertura de ramas es del 50%</label> <br>
+    <input type="radio" name="mchoice_1" id="Bopcion2" value="2" />
+    <label for="Bopcion2">La cobertura de líneas es del 100%</label> <br>
+    <input type="radio" name="mchoice_1" id="Bopcion3" value="3" />
+    <label for="Bopcion3">La cobertura de ramas es del 100%</label> <br>
+  </p>
+
+
+  <hr style="width: 100%;">
+  <h3 style="color:#1A5276">Ejercicio 6 [1 punto]</h3>
+
+  <p>Conteste marcando la opción correcta.</p>
+
+      <h4 style="color:#1A5276">Contamos con dos programas <i>p1</i> y <i>p2</i> que reciben los mismos parámetros 
+        de entrada y devuelven algo del mismo tipo. <i>p1</i> tiene un único ciclo, y <i>p2</i> contiene dos ciclos. 
+        Entonces:</b></h4>
+
+     <p>
+      <input type="radio" name="mchoice_2" id="Aopcion1" value="1" />
+          <label for="Aopcion1">Independientemente del input, <i>p2</i> realizará más operaciones que <i>p1</i></label> <br>
+      <input type="radio" name="mchoice_2" id="Aopcion2" value="2" />
+          <label for="Aopcion2">Para un mismo input, podemos afirmar que <i>p2</i> realizará más operaciones que <i>p1</i></label> <br>
+      <input type="radio" name="mchoice_2" id="Aopcion3" value="3" />
+          <label for="Aopcion3">Podría ocurrir que <i>p2</i> realice menos operaciones que <i>p1</i> (incluso para un mismo input)</label> <br>
+      </p>
+
+
+      <hr style="width: 100%;">
+      <h3 style="color:#1A5276">Adjunta el archivo con tu solución:</h3>
+      <p><b style="color:red">Solo se puede adjuntar 1 archivo de extensión .py. En caso de haber desarrollado tests
+          propios, no deben ser entregados.</b></p>
+
+      <label for="archivo">Seleccionar archivo a enviar:</label>
+      <input type="file" id="archivo" name="archivo" required accept=".py,text/x-python" />
+
+      <input type="submit" value="Enviar" style="background-color: #1A5276; border-radius: 5px;
+                margin-top:10px;padding: 10px 150px;color: #FFFFFF;
+                font-size: 20px;cursor: pointer; width:100%">
+
+    </form>
+  </div>
+<script>
+  function validaciones(event) {
+    // Obtiene todos los inputs tipo radio del formulario
+      const radioGroups = document.querySelectorAll('input[type="radio"]');
+      const groupedByName = {};
+
+      // Agrupar radios por su atributo name
+      radioGroups.forEach(radio => {
+        if (!groupedByName[radio.name]) {
+          groupedByName[radio.name] = [];
+        }
+        groupedByName[radio.name].push(radio);
+      });
+
+      // Verificar que cada grupo de radios tenga al menos uno seleccionado
+      for (const groupName in groupedByName) {
+        const radios = groupedByName[groupName];
+        const isChecked = radios.some(radio => radio.checked);
+
+        if (!isChecked) {
+          alert(`Debes seleccionar una opción para la pregunta ${groupName}`);
+          return false; // Detener la validación si falta alguna opción
+        }
+      }
+
+      var confirmacion = confirm("Confirmo que revisé mis respuestas y que quiero entregar mi examen");
+      if (!confirmacion) {
+          event.preventDefault();
+          event.returnValue = false;
+          return false;
+        }
+        event.returnValue = true;
+        return true;
+    }
+
+// registro una funcion para mostrar el archivo cuando se adjunta.
+// de esa forma evitamos que se adjunten otros archivos por error
+document
+  .getElementById('archivo')
+  .addEventListener(
+      'change',
+      function () {
+          var fr = new FileReader();
+          fr.onload = function () {
+              alert(this.result);
+          };
+          fr.readAsText(this.files[0]);
+      }
+  );
+
+// para forzar a bajar el template de pytest y que no se pueda abrir en un nuevo tab
+// (el browser intenta mostrar el codigo como HTML y el formato se ve raro)
+function forceDownload(url, filename) {
+  fetch(url).then(function(t) {
+    return t.blob().then((b) => {
+      var a = document.createElement("a");
+      a.href = URL.createObjectURL(b);
+      a.setAttribute("download", filename);
+      a.click();
+    });
+  });
+}
+</script>
+</body>
+
+</html>
+
+<h2>Solucion entregada por el alumno</h2>
+<pre><code>from queue import Queue as Cola
+
+#Ejercicio 1
+
+def cantidad_subsecuencias_que_suman(s: list[int], n: int) -&gt; int:
+
+    subsecuenciasPosibles:list[list[int]] = armarTodasLasSubsecs(s)
+    contador:int = 0
+
+    for subsec in subsecuenciasPosibles:
+        if len(subsec) != 0 and sumaEsN(subsec, n):
+            contador = contador +1
+
+    return contador 
+
+
+def armarTodasLasSubsecs(l:list[int])-&gt;list[list[int]]:
+
+    desde:int = len(l) -1
+    hasta:int = 0 #el índice 0 de la lista, ya que en la función armarSubsecDesdeHasta le voy a restar 1
+    res:list[list[int]] = []
+    for i in range (desde, hasta-1,-1):
+
+        for j in range (desde, hasta-1,-1):
+
+            subsec:list[int] = armarSubsecDesdeHasta(l,i,j)
+            res.append(subsec)
+
+    return res
+
+
+def armarSubsecDesdeHasta(l:list[int], n:int, m:int)-&gt;list[int]:
+    lista:list[int] = []
+    for i in range (n, m-1, -1):
+        lista.append(l[i])
+
+    return lista
+
+
+def sumaEsN(numeros:list[int], n:int)-&gt;bool:
+
+    return sumarLista(numeros) == n
+
+def sumarLista(numeros:list[int])-&gt;int:
+    res:int = 0
+    for numero in numeros:
+        res = res + numero
+
+    return res
+
+#Ejercicio 2
+
+def abrir_caja_prioridad(clientes: Cola[tuple[str, bool]]) -&gt; Cola[str]:
+
+    clientesPrioritarios:Cola[str] = Cola()
+    clientesAux:Cola[tuple[str,bool]] = Cola()
+
+    while not clientes.empty():
+
+        cliente:tuple[str,bool] = clientes.get()
+
+        if clienteEsPrioritario(cliente):
+            clientesPrioritarios.put(cliente[0])
+        else:
+            clientesAux.put(cliente)
+
+    while not clientesAux.empty():
+        clientes.put(clientesAux.get())
+
+    return clientesPrioritarios
+
+
+def clienteEsPrioritario(cliente:tuple[str,bool])-&gt;bool:
+
+    return cliente[1] 
+
+#Ejercicio 3
+
+def buscar_columna_con_maximo_menor_a_cota(A: list[list[int]], cota: int) -&gt; int:
+    cantFilas:int = len(A)
+    cantColumnas:int = len(A[0])
+    max:int
+    columnaRes:int
+
+    seAccedioAlPrimerElemento:bool = False
+
+    for i in range (0, cantFilas, 1):
+
+        for j in range (0, cantColumnas, 1):
+
+            if not seAccedioAlPrimerElemento:
+                seAccedioAlPrimerElemento =True
+                max = A[i][j]
+                columnaRes = j
+            else:
+                elemento:int = A[i][j]
+                if elementoCumpleCondiciones(elemento, cota, max) and j&lt;len(A[0]):
+                    max = elemento
+                    columnaRes = j
+
+    return columnaRes
+
+def elementoCumpleCondiciones(n:int, cota:int, max:int):
+    return compararElementoConCota(n,cota) and compararDosElementos(n,max) and n&gt;=0
+
+
+def compararElementoConCota(n:int, cota:int)-&gt;bool:
+    return n &lt; cota
+
+def compararDosElementos(n:int, m:int)-&gt;bool:
+    return n&gt;m
+
+#Ejercicio 4
+
+def agrupar_por_autor_con_cota(libros: dict[str, str], cota: int) -&gt; dict[str, list[str]]:
+
+    autoresChequeados:list[str] = []
+    listaDeRes:list[tuple[str,list[str]]] = []
+    res:dict[str, list[str]] = {}
+
+    for item in libros.items():
+
+        parLibroAutor:tuple[str,str] = item
+        autor:str = parLibroAutor[1]
+
+        if parLibroAutor[1] not in autoresChequeados and autorApareceNOMasVeces(libros, autor, cota):
+            tuplaAutorLibros:tuple[str,list[str]] = crearTuplaAutorLibros(libros, autor)
+            listaDeRes.append(tuplaAutorLibros)
+            autoresChequeados.append(autor)
+        else:
+            autoresChequeados.append(autor)
+
+    res = crearDiccionario(listaDeRes)
+
+    return res
+
+
+def crearDiccionario(listaAutorLibros:list[tuple[str, list[str]]])-&gt;dict[str,list[str]]:
+
+    res:dict[str,list[str]] = {}
+
+    for elemento in listaAutorLibros:
+        autor:str = elemento[0]
+        libros:list[str] = elemento[1]
+
+        res[autor] = libros
+
+    return res
+
+
+def crearTuplaAutorLibros(libros:dict[str,str], autor:str)-&gt;tuple[str, list[str]]:
+
+    res:tuple[str,list[str]] = ()
+    librosDelAutor:list[str] = []
+
+    for item in libros.items():
+        par:tuple[str,str] = item
+
+        if par[1] == autor:
+            librosDelAutor.append(par[0])
+
+    res = (autor, librosDelAutor)
+    return res
+
+
+def autorApareceNOMasVeces(libros:dict[str,str], autor:str, n:int)-&gt;bool:
+
+    autores:list[str] = libros.values()
+    res:int
+
+    res = contarAparicionesDeElm(autores, autor)
+
+    return res &gt;= n
+
+
+def contarAparicionesDeElm(lista:list[str], elm:str )-&gt;int:
+
+    apariciones:int = 0
+
+    for item in lista:
+        if item == elm:
+            apariciones = apariciones +1
+
+    return apariciones
+
+</code></pre>
+<h2>Resultado de la compilacion</h2>
+<pre><code>
+</code></pre>
+<h2>Ejecucion de los tests</h2>
+<h3>tema2-test-ej1.py.compilacion.out</h3>
+<p>Puntaje del ej: 2 / 2</p>
+<pre><code>test_alternando_valores_suma_cero (__main__.Ej1Test.test_alternando_valores_suma_cero) ... ok
+test_alternando_valores_suma_cero_impar (__main__.Ej1Test.test_alternando_valores_suma_cero_impar) ... ok
+test_ceros_al_inicio (__main__.Ej1Test.test_ceros_al_inicio) ... ok
+test_con_cero_en_el_medio (__main__.Ej1Test.test_con_cero_en_el_medio) ... ok
+test_ejemplo (__main__.Ej1Test.test_ejemplo) ... ok
+test_lista_vacia_devuelve_cero (__main__.Ej1Test.test_lista_vacia_devuelve_cero) ... ok
+test_muchos_ceros_despues_de_n (__main__.Ej1Test.test_muchos_ceros_despues_de_n) ... ok
+test_primer_elemento_es_n (__main__.Ej1Test.test_primer_elemento_es_n) ... ok
+test_primero_y_segundo_suman (__main__.Ej1Test.test_primero_y_segundo_suman) ... ok
+test_todos_iguales_a_n (__main__.Ej1Test.test_todos_iguales_a_n) ... ok
+test_todos_negativos (__main__.Ej1Test.test_todos_negativos) ... ok
+test_un_elemento_igual (__main__.Ej1Test.test_un_elemento_igual) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.006s
+
+OK
+
+</code></pre>
+<h3>tema2-test-ej2.py.compilacion.out</h3>
+<p>Puntaje del ej: 2 / 2</p>
+<pre><code>test_alternando_prioridades (__main__.Ej1Test.test_alternando_prioridades) ... ok
+test_cola_vacia (__main__.Ej1Test.test_cola_vacia) ... ok
+test_ejemplo (__main__.Ej1Test.test_ejemplo) ... ok
+test_ninguno_prioritario (__main__.Ej1Test.test_ninguno_prioritario) ... ok
+test_todos_prioritarios (__main__.Ej1Test.test_todos_prioritarios) ... ok
+test_un_solo_cliente_no_prioritario (__main__.Ej1Test.test_un_solo_cliente_no_prioritario) ... ok
+test_un_solo_cliente_prioritario (__main__.Ej1Test.test_un_solo_cliente_prioritario) ... ok
+test_varios_consecutivos_prioritarios_y_no_prioritarios (__main__.Ej1Test.test_varios_consecutivos_prioritarios_y_no_prioritarios) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.006s
+
+OK
+
+</code></pre>
+<h3>tema2-test-ej3.py.compilacion.out</h3>
+<p>Puntaje del ej: 0.4 / 2</p>
+<pre><code>test_cota_negativa_primer_elemento_mas_grande (__main__.Ej1Test.test_cota_negativa_primer_elemento_mas_grande) ... ok
+test_ejemplo (__main__.Ej1Test.test_ejemplo) ... ok
+test_matriz_1x1 (__main__.Ej1Test.test_matriz_1x1) ... ok
+test_matriz_1xn (__main__.Ej1Test.test_matriz_1xn) ... ok
+test_matriz_cuadrada (__main__.Ej1Test.test_matriz_cuadrada) ... FAIL
+test_matriz_nx1 (__main__.Ej1Test.test_matriz_nx1) ... ok
+test_maximo_menor_a_cota_repetido (__main__.Ej1Test.test_maximo_menor_a_cota_repetido) ... ok
+test_negativos_muy_grandes_cota_negativa (__main__.Ej1Test.test_negativos_muy_grandes_cota_negativa) ... FAIL
+test_negativos_y_cota_negativa (__main__.Ej1Test.test_negativos_y_cota_negativa) ... FAIL
+test_positivos_muy_grandes_cota_positiva (__main__.Ej1Test.test_positivos_muy_grandes_cota_positiva) ... FAIL
+test_rectangular_mas_columnas_que_filas_con_negativos (__main__.Ej1Test.test_rectangular_mas_columnas_que_filas_con_negativos) ... FAIL
+test_rectangular_mas_filas_que_columnas_con_negativos (__main__.Ej1Test.test_rectangular_mas_filas_que_columnas_con_negativos) ... FAIL
+test_un_solo_elemento_menor_a_cota (__main__.Ej1Test.test_un_solo_elemento_menor_a_cota) ... FAIL
+test_varios_elementos_menores_a_cota (__main__.Ej1Test.test_varios_elementos_menores_a_cota) ... FAIL
+
+======================================================================
+FAIL: test_matriz_cuadrada (__main__.Ej1Test.test_matriz_cuadrada)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File &quot;./venv/lib/python3.12/site-packages/timeout_decorator/timeout_decorator.py&quot;, line 82, in new_function
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File &quot;./correcciones/parcial_python_tm/rabago_facundo_david_42648344/tema2-test-ej3.py&quot;, line 87, in test_matriz_cuadrada
+    self.assertEqual(buscar_columna_con_maximo_menor_a_cota(A, 9), 2)
+AssertionError: 0 != 2
+
+======================================================================
+FAIL: test_negativos_muy_grandes_cota_negativa (__main__.Ej1Test.test_negativos_muy_grandes_cota_negativa)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File &quot;./venv/lib/python3.12/site-packages/timeout_decorator/timeout_decorator.py&quot;, line 82, in new_function
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File &quot;./correcciones/parcial_python_tm/rabago_facundo_david_42648344/tema2-test-ej3.py&quot;, line 123, in test_negativos_muy_grandes_cota_negativa
+    self.assertEqual(buscar_columna_con_maximo_menor_a_cota(A, -(10**7)), 1)
+AssertionError: 0 != 1
+
+======================================================================
+FAIL: test_negativos_y_cota_negativa (__main__.Ej1Test.test_negativos_y_cota_negativa)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File &quot;./venv/lib/python3.12/site-packages/timeout_decorator/timeout_decorator.py&quot;, line 82, in new_function
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File &quot;./correcciones/parcial_python_tm/rabago_facundo_david_42648344/tema2-test-ej3.py&quot;, line 34, in test_negativos_y_cota_negativa
+    self.assertEqual(
+AssertionError: 0 != 1
+
+======================================================================
+FAIL: test_positivos_muy_grandes_cota_positiva (__main__.Ej1Test.test_positivos_muy_grandes_cota_positiva)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File &quot;./venv/lib/python3.12/site-packages/timeout_decorator/timeout_decorator.py&quot;, line 82, in new_function
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File &quot;./correcciones/parcial_python_tm/rabago_facundo_david_42648344/tema2-test-ej3.py&quot;, line 130, in test_positivos_muy_grandes_cota_positiva
+    self.assertEqual(buscar_columna_con_maximo_menor_a_cota(A, 10**10), 3)
+AssertionError: 0 != 3
+
+======================================================================
+FAIL: test_rectangular_mas_columnas_que_filas_con_negativos (__main__.Ej1Test.test_rectangular_mas_columnas_que_filas_con_negativos)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File &quot;./venv/lib/python3.12/site-packages/timeout_decorator/timeout_decorator.py&quot;, line 82, in new_function
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File &quot;./correcciones/parcial_python_tm/rabago_facundo_david_42648344/tema2-test-ej3.py&quot;, line 106, in test_rectangular_mas_columnas_que_filas_con_negativos
+    self.assertEqual(buscar_columna_con_maximo_menor_a_cota(A, 0), 2)
+AssertionError: 0 != 2
+
+======================================================================
+FAIL: test_rectangular_mas_filas_que_columnas_con_negativos (__main__.Ej1Test.test_rectangular_mas_filas_que_columnas_con_negativos)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File &quot;./venv/lib/python3.12/site-packages/timeout_decorator/timeout_decorator.py&quot;, line 82, in new_function
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File &quot;./correcciones/parcial_python_tm/rabago_facundo_david_42648344/tema2-test-ej3.py&quot;, line 97, in test_rectangular_mas_filas_que_columnas_con_negativos
+    self.assertEqual(buscar_columna_con_maximo_menor_a_cota(A, -1), 1)
+AssertionError: 0 != 1
+
+======================================================================
+FAIL: test_un_solo_elemento_menor_a_cota (__main__.Ej1Test.test_un_solo_elemento_menor_a_cota)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File &quot;./venv/lib/python3.12/site-packages/timeout_decorator/timeout_decorator.py&quot;, line 82, in new_function
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File &quot;./correcciones/parcial_python_tm/rabago_facundo_david_42648344/tema2-test-ej3.py&quot;, line 65, in test_un_solo_elemento_menor_a_cota
+    self.assertEqual(buscar_columna_con_maximo_menor_a_cota(A, 6), 1)
+AssertionError: 0 != 1
+
+======================================================================
+FAIL: test_varios_elementos_menores_a_cota (__main__.Ej1Test.test_varios_elementos_menores_a_cota)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File &quot;./venv/lib/python3.12/site-packages/timeout_decorator/timeout_decorator.py&quot;, line 82, in new_function
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File &quot;./correcciones/parcial_python_tm/rabago_facundo_david_42648344/tema2-test-ej3.py&quot;, line 72, in test_varios_elementos_menores_a_cota
+    self.assertEqual(buscar_columna_con_maximo_menor_a_cota(A, 8), 2)
+AssertionError: 0 != 2
+
+----------------------------------------------------------------------
+Ran 14 tests in 0.010s
+
+FAILED (failures=8)
+
+</code></pre>
+<h3>tema2-test-ej4.py.compilacion.out</h3>
+<p>Puntaje del ej: 2 / 2</p>
+<pre><code>test_con_cota (__main__.Ej1Test.test_con_cota) ... ok
+test_con_cota_elimina_todo (__main__.Ej1Test.test_con_cota_elimina_todo) ... ok
+test_con_cota_no_elimina_nada (__main__.Ej1Test.test_con_cota_no_elimina_nada) ... ok
+test_un_libro (__main__.Ej1Test.test_un_libro) ... ok
+test_vacio (__main__.Ej1Test.test_vacio) ... ok
+test_varios_libros_un_autor (__main__.Ej1Test.test_varios_libros_un_autor) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.005s
+
+OK
+
+</code></pre>
+<h3>mchoice.json-ej5.compilacion.out</h3>
+<p>Puntaje del ej: 1 / 1</p>
+<pre><code>mchoice ej5: respuesta del alumno=1, respuesta correcta=1
+
+Ran 1 test in 0 seconds
+
+OK
+
+</code></pre>
+<h3>mchoice.json-ej6.compilacion.out</h3>
+<p>Puntaje del ej: 1 / 1</p>
+<pre><code>mchoice ej6: respuesta del alumno=3, respuesta correcta=3
+
+Ran 1 test in 0 seconds
+
+OK
+
+</code></pre>
+<p>FIN</p>
