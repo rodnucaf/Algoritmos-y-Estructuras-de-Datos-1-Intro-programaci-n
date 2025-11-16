@@ -1,5 +1,7 @@
 <div style="background-color: #3498db; color: #fff; padding: 20px; text-align: center; border-radius: 8px; margin-bottom: 20px;">
     <h1>Algoritmos y Estructuras de Datos 1 - Introducción a la Programación</h1>
+    <h2>Universidad de Buenos Aires, Facultad de Ciencias Exactas y Naturales</h2>
+    <h3>Ciencias de la Computación</h3>
     <p><strong>Parciales y Trabajo Práctico Final</strong></p>
 </div>
 
