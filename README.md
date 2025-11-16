@@ -1,9 +1,11 @@
-# Algoritmos y Estructuras de Datos 1 - Introducción a la Programación
-
 <div style="background-color: #3498db; color: #fff; padding: 20px; text-align: center; border-radius: 8px; margin-bottom: 20px;">
     <h1>Algoritmos y Estructuras de Datos 1 - Introducción a la Programación</h1>
     <p><strong>Parciales y Trabajo Práctico Final</strong></p>
 </div>
+
+## Disclaimer!
+<p>Debe tenerse en cuenta que se trabajó desde una dinámica en la que existe un "acuerdo" programador-usuario, en el que existe una especificación de cada problema a resolver/implementar y si el usuario provee lo requerido por la especificación correctamente, entonces la solución creada por el programador debe asegurar funcionar según lo esperado. Por esto mismo, no fue pedido por la materia ningún tipo de validación de datos para las funciones.
+Además, con cada lenguaje de programación, se trabajó con una serie de construcciones/funciones limitadas. Se puede encontrar un listado de cada una en las respectivas carpetas.</p>
 
 ## Material Cubierto en la Materia
 <ul>
@@ -23,8 +25,6 @@
     <li>Colas (Queues, FifoQueues)</li>
 </ul>
 
-## Disclaimer!
-<p>Debe tenerse en cuenta que se trabajó desde una dinámica en la que existe un "acuerdo" programador-usuario, en el que existe una especificación de cada problema a resolver/implementar y si el usuario provee lo requerido por la especificación correctamente, entonces la solución creada por el programador debe asegurar funcionar según lo esperado. Por esto mismo, no fue pedido por la materia ningún tipo de validación de datos para las funciones.</p>
 
 ## Trabajo Práctico Final
 <p>El trabajo práctico final consistió en resolver una serie de problemas con los siguientes requerimientos:</p>
